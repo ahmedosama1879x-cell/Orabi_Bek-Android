@@ -116,7 +116,7 @@ const PAL=['#ff7a1a','#a06bff','#3ddc97','#ff5560'];let hue=0,done=new Set();
 try{let raw=null;try{if(window.AndroidStore)raw=AndroidStore.load()}catch(e){}
 if(!raw)try{raw=localStorage.getItem('dc-tt')}catch(e){}
 done=new Set(JSON.parse(raw||'[]'))}catch(e){}
-const save=()=>{const j=JSON.stringify([...done]);try{if(window.AndroidStore)AndroidStore.save(j)}catch(e){}try{localStorage.setItem('dc-tt',j)}catch(e){};
+const save=()=>{const j=JSON.stringify([...done]);try{if(window.AndroidStore)AndroidStore.save(j)}catch(e){}try{localStorage.setItem('dc-tt',j)}catch(e){} };
 const AB=['SUN','MON','TUE','WED','THU','SAT'],TD=[0,1,2,3,4,null,5][new Date().getDay()],
 W=j=>D[j][1].reduce((a,c)=>a+c[4],0),
 REM=j=>D[j][1].reduce((a,c,i)=>a+(done.has(j+'-'+i)?0:c[4]),0),
@@ -178,6 +178,6 @@ $('#pn').addEventListener('click',e=>{const b=e.target.closest('.c');if(!b)retur
  else if(CL(r)){fat('FATALITY',D[r][0].toUpperCase()+' CLEARED · FLAWLESS VICTORY');setTimeout(()=>{ms();ask(r)},2100)}
  else ms()});
 $('#fl').addEventListener('click',()=>{hue=(hue+1)%PAL.length;upd();toast('MUTATION','Flame hue shifted')});
-let armed=0;$('#rst').addEventListener('click',e=>{if(!armed){armed=1;e.target.textContent='SURE? TAP AGAIN';setTimeout(()=>{armed=0;e.target.textContent='NEW RUN'},3000)}else{armed=0;e.target.textContent='NEW RUN';done.clear();save();cur=start();render();toast('NEW RUN','Cells wiped. Good luck, Beheaded.')} });
+let armed=0;$('#rst').addEventListener('click',e=>{if(!armed){armed=1;e.target.textContent='SURE? TAP AGAIN';setTimeout(()=>{armed=0;e.target.textContent='NEW RUN'},3000)}else{armed=0;e.target.textContent='NEW RUN';done.clear();save();cur=start();render();toast('NEW RUN','Cells wiped. Good luck, Beheaded.')}});
 render();
 </script></body></html>
